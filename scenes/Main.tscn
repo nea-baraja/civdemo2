@@ -1,0 +1,105 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://src/ui/main_controller.gd" id="1"]
+[ext_resource type="Script" path="res://src/ui/map_view.gd" id="2"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1")
+
+[node name="MapView" type="Node2D" parent="."]
+position = Vector2(420, 360)
+script = ExtResource("2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UIPanel" type="PanelContainer" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 0.0
+anchor_bottom = 1.0
+offset_left = -380.0
+offset_right = 0.0
+offset_top = 0.0
+offset_bottom = 0.0
+
+[node name="Margin" type="MarginContainer" parent="CanvasLayer/UIPanel"]
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/UIPanel/Margin"]
+
+[node name="Resources" type="Label" parent="CanvasLayer/UIPanel/Margin/VBox"]
+text = "点数: -"
+
+[node name="Phase" type="Label" parent="CanvasLayer/UIPanel/Margin/VBox"]
+text = "阶段: -"
+
+[node name="Info" type="Label" parent="CanvasLayer/UIPanel/Margin/VBox"]
+text = "选中: -"
+
+[node name="Sep1" type="HSeparator" parent="CanvasLayer/UIPanel/Margin/VBox"]
+
+[node name="RegionLabel" type="Label" parent="CanvasLayer/UIPanel/Margin/VBox"]
+text = "区域商店"
+
+[node name="RegionBox" type="VBoxContainer" parent="CanvasLayer/UIPanel/Margin/VBox"]
+
+[node name="RegionList" type="ItemList" parent="CanvasLayer/UIPanel/Margin/VBox/RegionBox"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 120)
+
+[node name="RegionButtons" type="HBoxContainer" parent="CanvasLayer/UIPanel/Margin/VBox/RegionBox"]
+
+[node name="Rotate" type="Button" parent="CanvasLayer/UIPanel/Margin/VBox/RegionBox/RegionButtons"]
+text = "旋转"
+
+[node name="Refresh" type="Button" parent="CanvasLayer/UIPanel/Margin/VBox/RegionBox/RegionButtons"]
+text = "刷新"
+
+[node name="Expand" type="Button" parent="CanvasLayer/UIPanel/Margin/VBox/RegionBox/RegionButtons"]
+text = "扩张范围"
+
+[node name="Sep2" type="HSeparator" parent="CanvasLayer/UIPanel/Margin/VBox"]
+
+[node name="BuildingLabel" type="Label" parent="CanvasLayer/UIPanel/Margin/VBox"]
+text = "建筑商店"
+
+[node name="BuildingBox" type="VBoxContainer" parent="CanvasLayer/UIPanel/Margin/VBox"]
+
+[node name="BuildingList" type="ItemList" parent="CanvasLayer/UIPanel/Margin/VBox/BuildingBox"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 120)
+
+[node name="Demolish" type="Button" parent="CanvasLayer/UIPanel/Margin/VBox/BuildingBox"]
+text = "拆除选中"
+
+[node name="Sep3" type="HSeparator" parent="CanvasLayer/UIPanel/Margin/VBox"]
+
+[node name="ImproveLabel" type="Label" parent="CanvasLayer/UIPanel/Margin/VBox"]
+text = "改良(免费)"
+
+[node name="ImproveBox" type="VBoxContainer" parent="CanvasLayer/UIPanel/Margin/VBox"]
+
+[node name="ImproveList" type="ItemList" parent="CanvasLayer/UIPanel/Margin/VBox/ImproveBox"]
+size_flags_vertical = 2
+custom_minimum_size = Vector2(0, 80)
+
+[node name="Sep4" type="HSeparator" parent="CanvasLayer/UIPanel/Margin/VBox"]
+
+[node name="Production" type="Button" parent="CanvasLayer/UIPanel/Margin/VBox"]
+text = "进入生产阶段"
+
+[node name="Log" type="TextEdit" parent="CanvasLayer/UIPanel/Margin/VBox"]
+size_flags_vertical = 3
+editable = false
+
+[connection signal="item_selected" from="CanvasLayer/UIPanel/Margin/VBox/RegionBox/RegionList" to="." method="_on_region_list_item_selected"]
+[connection signal="pressed" from="CanvasLayer/UIPanel/Margin/VBox/RegionBox/RegionButtons/Rotate" to="." method="_on_rotate_pressed"]
+[connection signal="pressed" from="CanvasLayer/UIPanel/Margin/VBox/RegionBox/RegionButtons/Refresh" to="." method="_on_refresh_pressed"]
+[connection signal="pressed" from="CanvasLayer/UIPanel/Margin/VBox/RegionBox/RegionButtons/Expand" to="." method="_on_expand_pressed"]
+[connection signal="item_selected" from="CanvasLayer/UIPanel/Margin/VBox/BuildingBox/BuildingList" to="." method="_on_building_list_item_selected"]
+[connection signal="pressed" from="CanvasLayer/UIPanel/Margin/VBox/BuildingBox/Demolish" to="." method="_on_demolish_pressed"]
+[connection signal="item_selected" from="CanvasLayer/UIPanel/Margin/VBox/ImproveBox/ImproveList" to="." method="_on_improve_list_item_selected"]
+[connection signal="pressed" from="CanvasLayer/UIPanel/Margin/VBox/Production" to="." method="_on_production_pressed"]

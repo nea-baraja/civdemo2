@@ -1,0 +1,70 @@
+{
+  "terrains": [
+	{"id": "plains", "name": "平原", "color": "#c9d78d"},
+	{"id": "grass", "name": "草原", "color": "#a9d26d"},
+	{"id": "forest", "name": "森林", "color": "#5f9b55"},
+	{"id": "hill", "name": "丘陵", "color": "#c2b280"},
+	{"id": "mountain", "name": "山地", "color": "#9aa0a6"},
+	{"id": "desert", "name": "沙漠", "color": "#e6d5a7"}
+  ],
+  "buildings": [
+	{"id": "farm", "name": "农场", "kind": "building", "cost_prod": 3, "progress_max": 5, "outputs": {"food": 5}},
+	{"id": "plantation", "name": "种植园", "kind": "building", "cost_prod": 3, "progress_max": 5, "outputs": {"food": 2, "gold": 3}},
+	{"id": "camp", "name": "营地", "kind": "building", "cost_prod": 3, "progress_max": 5, "outputs": {"food": 1, "pioneer": 2}},
+	{"id": "pasture", "name": "牧场", "kind": "building", "cost_prod": 3, "progress_max": 5, "outputs": {"food": 3, "pioneer": 1}},
+	{"id": "mine", "name": "矿山", "kind": "building", "cost_prod": 3, "progress_max": 5, "outputs": {"prod": 5}},
+	{"id": "quarry", "name": "采石场", "kind": "building", "cost_prod": 3, "progress_max": 5, "outputs": {"prod": 3, "build": 1}},
+	{"id": "clay_pit", "name": "粘土坑", "kind": "building", "cost_prod": 3, "progress_max": 5, "outputs": {"prod": 1, "build": 2}},
+	{"id": "lumber", "name": "伐木场", "kind": "building", "cost_prod": 3, "progress_max": 5, "outputs": {"prod": 2, "gold": 3}},
+
+	{"id": "animal_mill", "name": "畜力磨坊", "kind": "building", "cost_prod": 4, "progress_max": 6, "outputs": {}, "special": "animal_mill"},
+	{"id": "irrigation", "name": "灌溉渠", "kind": "improvement", "cost_prod": 0, "progress_max": 1, "outputs": {}, "special": "irrigation"},
+
+	{"id": "bone_workshop", "name": "骨器作坊", "kind": "building", "cost_prod": 4, "progress_max": 6, "outputs": {"prod": 12}, "special": "pioneer_progress"},
+	{"id": "brick_kiln", "name": "砖窑", "kind": "building", "cost_prod": 4, "progress_max": 6, "outputs": {"prod": 12}, "special": "build_progress"},
+	{"id": "lime_kiln", "name": "石灰窑", "kind": "building", "cost_prod": 4, "progress_max": 6, "outputs": {"prod": 1, "build": 3}},
+	{"id": "smoked_meat", "name": "熏肉坊", "kind": "building", "cost_prod": 4, "progress_max": 6, "outputs": {"food": 1, "pioneer": 3}}
+  ],
+  "terrain_build_rules": [
+	{"building_id": "farm", "terrains": ["plains", "grass"]},
+	{"building_id": "plantation", "terrains": ["plains", "grass"]},
+	{"building_id": "camp", "terrains": ["forest", "hill"]},
+	{"building_id": "pasture", "terrains": ["plains", "grass"]},
+	{"building_id": "mine", "terrains": ["hill", "mountain"]},
+	{"building_id": "quarry", "terrains": ["hill", "mountain"]},
+	{"building_id": "clay_pit", "terrains": ["plains", "grass", "hill"]},
+	{"building_id": "lumber", "terrains": ["forest"]},
+	{"building_id": "animal_mill", "terrains": ["plains", "grass"]},
+	{"building_id": "irrigation", "terrains": ["plains", "grass", "desert"]},
+	{"building_id": "bone_workshop", "terrains": ["plains", "grass", "hill"]},
+	{"building_id": "brick_kiln", "terrains": ["plains", "grass", "hill"]},
+	{"building_id": "lime_kiln", "terrains": ["hill", "mountain"]},
+	{"building_id": "smoked_meat", "terrains": ["forest", "hill"]}
+  ],
+  "region_shapes": [
+	{
+	  "id": "hex7",
+	  "name": "标准七格",
+	  "cells": [
+		[0,0], [1,0], [0,1], [-1,1], [-1,0], [0,-1], [1,-1]
+	  ],
+	  "terrain_weights": {"plains": 3, "grass": 3, "forest": 2, "hill": 2, "mountain": 1, "desert": 1}
+	},
+	{
+	  "id": "claw",
+	  "name": "爪形",
+	  "cells": [
+		[0,0], [1,0], [2,0], [0,1], [-1,1], [0,-1], [1,-1]
+	  ],
+	  "terrain_weights": {"plains": 2, "grass": 3, "forest": 3, "hill": 2, "mountain": 1, "desert": 1}
+	},
+	{
+	  "id": "hook",
+	  "name": "钩形",
+	  "cells": [
+		[0,0], [1,0], [2,-1], [1,-1], [0,-1], [-1,0], [0,1]
+	  ],
+	  "terrain_weights": {"plains": 3, "grass": 2, "forest": 2, "hill": 3, "mountain": 1, "desert": 1}
+	}
+  ]
+}
